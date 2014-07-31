@@ -10,15 +10,11 @@
     "authors": [
         {
             "name": "Ian Létourneau",
-            "email": "ian.letourneau.1@ulaval.ca"
+            "email": "ian.letourneau.1@ulaval.ca",
+            "role": "Developer"
         }
     ],
 
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1-dev"
-        }
-    },
     "autoload": {
         "psr-0": {
             "Ianlet": "src"
