@@ -1,0 +1,39 @@
+{
+    "name": "ianlet/stringfunctions",
+    "description": "Simple functions to manipulate strings",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "strings",
+        "utilities"
+    ],
+    "authors": [
+        {
+            "name": "Ian Létourneau",
+            "email": "ian.letourneau.1@ulaval.ca"
+        }
+    ],
+
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1-dev"
+        }
+    },
+    "autoload": {
+        "psr-0": {
+            "Ianlet": "src"
+        }
+    },
+
+    "require": {
+        "php": ">=5.4"
+    },
+
+    "require-dev": {
+        "phpspec/phpspec": "dev-master"
+    },
+
+    "config": {
+        "bin-dir": "bin"
+    }
+}
