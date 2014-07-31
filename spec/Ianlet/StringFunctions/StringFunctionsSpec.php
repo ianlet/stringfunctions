@@ -27,4 +27,13 @@ class StringFunctionsSpec extends ObjectBehavior
         $this::slug('Uncommon_organization_name')->shouldReturn('uncommon-organization-name');
         $this::slug('Nín hǎo. Wǒ shì zhōng guó rén')->shouldReturn('nin-hao-wo-shi-zhong-guo-ren');
     }
+
+    function it_guards_a_string()
+    {
+        $this->shouldNotThrow('\InvalidArgumentException')->during('guardString', ['A string']);
+        $this->shouldThrow('\InvalidArgumentException')->during('guardString', [new \stdClass()]);
+        $this->shouldThrow('\InvalidArgumentException')->during('guardString', [5]);
+        $this->shouldThrow('\InvalidArgumentException')->during('guardString', [[]]);
+        $this->shouldThrow('\InvalidArgumentException')->during('guardString', ['    ']);
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace Ianlet\StringFunctions;
 
+use InvalidArgumentException;
+
 /**
  * Class StringFunctions
  * @package Ianlet\StringFunctions
@@ -15,7 +17,7 @@ class StringFunctions
      * @param $string
      * @return string
      */
-    static public function snakeCase($string)
+    public static function snakeCase($string)
     {
         $string = self::slug($string, '_');
 
@@ -28,7 +30,7 @@ class StringFunctions
      * @param string $delimiter
      * @return string
      */
-    static public function slug($string, $delimiter = '-')
+    public static function slug($string, $delimiter = '-')
     {
         $string = htmlspecialchars_decode($string, ENT_QUOTES);
 
@@ -43,5 +45,23 @@ class StringFunctions
         $string = preg_replace('~[^-\w]+~', '', $string);
 
         return $string;
+    }
+
+    /**
+     * Verify that a variable is a string and that it is not empty
+     * @param $string
+     * @throws \InvalidArgumentException
+     */
+    public static function guardString($string)
+    {
+        if (!is_string($string) || empty($string)) {
+            throw new InvalidArgumentException("String expected");
+        }
+
+        $string = trim($string);
+
+        if(empty($string)){
+            throw new InvalidArgumentException("String expected");
+        }
     }
 }
