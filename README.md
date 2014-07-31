@@ -3,7 +3,7 @@
 PHP Utilities to manipulate strings
 
 
-#Usage
+## Usage
 
 ```php
 <?php
