@@ -30,10 +30,10 @@ class StringFunctionsSpec extends ObjectBehavior
 
     function it_guards_a_string()
     {
-        $this->shouldNotThrow('\InvalidArgumentException')->during('guardString', ['A string']);
-        $this->shouldThrow('\InvalidArgumentException')->during('guardString', [new \stdClass()]);
-        $this->shouldThrow('\InvalidArgumentException')->during('guardString', [5]);
-        $this->shouldThrow('\InvalidArgumentException')->during('guardString', [[]]);
-        $this->shouldThrow('\InvalidArgumentException')->during('guardString', ['    ']);
+        $this->shouldNotThrow('\InvalidArgumentException')->duringGuardString('A string');
+        $this->shouldThrow(new \InvalidArgumentException('String expected'))->duringGuardString(new \stdClass());
+        $this->shouldThrow(new \InvalidArgumentException('String expected'))->duringGuardString(5);
+        $this->shouldThrow(new \InvalidArgumentException('String expected'))->duringGuardString([]);
+        $this->shouldThrow(new \InvalidArgumentException('The string should not be empty'))->duringGuardString('    ');
     }
 }

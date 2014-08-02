@@ -32,16 +32,16 @@ class StringFunctions
      */
     public static function slug($string, $delimiter = '-')
     {
+        self::guardString($string);
+
         $string = htmlspecialchars_decode($string, ENT_QUOTES);
 
         $string = preg_replace('~[^\\pL\d]+~u', $delimiter, $string);
-
         $string = trim($string, $delimiter);
 
         $string = iconv('utf-8', 'ASCII//TRANSLIT', $string);
 
         $string = strtolower($string);
-
         $string = preg_replace('~[^-\w]+~', '', $string);
 
         return $string;
@@ -60,8 +60,8 @@ class StringFunctions
 
         $string = trim($string);
 
-        if(empty($string)){
-            throw new InvalidArgumentException("String expected");
+        if (empty($string)) {
+            throw new InvalidArgumentException("The string should not be empty");
         }
     }
 }
