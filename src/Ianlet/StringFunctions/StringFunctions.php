@@ -55,13 +55,34 @@ class StringFunctions
     public static function guardString($string)
     {
         if (!is_string($string) || empty($string)) {
-            throw new InvalidArgumentException("String expected");
+            throw new InvalidArgumentException('String expected');
         }
 
         $string = trim($string);
 
         if (empty($string)) {
-            throw new InvalidArgumentException("The string should not be empty");
+            throw new InvalidArgumentException('The string should not be empty');
         }
+    }
+
+    public static function isLengthInRange($string, $start, $end)
+    {
+        self::guardString($string);
+
+        if (!is_int($start) || !is_int($end)) {
+            throw new InvalidArgumentException('Start and end value should be integers');
+        }
+
+        if ($start < 0 || $end < 0) {
+            throw new InvalidArgumentException('Start and end value should be positives');
+        }
+
+        if ($start >= $end) {
+            throw new InvalidArgumentException('Start value should be less than end value');
+        }
+
+        $size = sizeof($string);
+
+        return $size >= $start && $size <= $end;
     }
 }

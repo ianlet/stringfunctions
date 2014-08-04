@@ -36,4 +36,33 @@ class StringFunctionsSpec extends ObjectBehavior
         $this->shouldThrow(new \InvalidArgumentException('String expected'))->duringGuardString([]);
         $this->shouldThrow(new \InvalidArgumentException('The string should not be empty'))->duringGuardString('    ');
     }
+
+    function it_expects_a_string_length_to_be_in_positive_integer_range()
+    {
+        $start = 0;
+        $end = 15;
+        $string = 'small string';
+
+        $this::shouldBeLengthInRange($string, $start, $end);
+
+        $start = -1;
+        $this->shouldThrow(new \InvalidArgumentException('Start and end value should be positives'))->duringIsLengthInRange($string, $start, $end);
+
+        $start = 0;
+        $end = -1;
+        $this->shouldThrow(new \InvalidArgumentException('Start and end value should be positives'))->duringIsLengthInRange($string, $start, $end);
+
+        $start = 'ha';
+        $end = 2;
+        $this->shouldThrow(new \InvalidArgumentException('Start and end value should be integers'))->duringIsLengthInRange($string, $start, $end);
+
+        $start = 0;
+        $end = 'rt';
+        $this->shouldThrow(new \InvalidArgumentException('Start and end value should be integers'))->duringIsLengthInRange($string, $start, $end);
+
+        $start = 5;
+        $end = 2;
+        $this->shouldThrow(new \InvalidArgumentException('Start value should be less than end value'))->duringIsLengthInRange($string, $start, $end);
+    }
+
 }
